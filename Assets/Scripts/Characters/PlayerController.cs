@@ -7,12 +7,15 @@ public class PlayerController : MonoBehaviour
 {
     private NavMeshAgent agent;
 
+    private Animator animator;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -21,6 +24,22 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         MouseManager.Instance.OnMouseClicked += MoveToTaget;
+    }
+
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+        SwitchAnimation();
+    }
+
+    /// <summary>
+    /// Switch animation of the player
+    /// </summary>
+    private void SwitchAnimation()
+    {
+        animator.SetFloat("Speed", agent.velocity.sqrMagnitude);
     }
 
     /// <summary>
