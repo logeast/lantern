@@ -7,6 +7,10 @@ public class MouseManager : MonoBehaviour
 {
     // SingleTon
     public static MouseManager Instance;
+
+    // cursors
+    public Texture2D pointer;
+
     // Hit info for raycast
     RaycastHit hitInfo;
     // Create an event action
@@ -35,6 +39,14 @@ public class MouseManager : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo))
         {
             // TODO: change mouse texure
+            switch (hitInfo.collider.gameObject.tag)
+            {
+                case "Ground":
+                    Cursor.SetCursor(pointer, new Vector2(16, 16), CursorMode.Auto);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
