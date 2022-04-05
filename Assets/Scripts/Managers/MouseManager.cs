@@ -9,7 +9,7 @@ public class MouseManager : MonoBehaviour
     public static MouseManager Instance;
 
     // cursors
-    public Texture2D pointer;
+    public Texture2D point, doorway, attack, target, arrow;
 
     // Hit info for raycast
     RaycastHit hitInfo;
@@ -42,7 +42,10 @@ public class MouseManager : MonoBehaviour
             switch (hitInfo.collider.gameObject.tag)
             {
                 case "Ground":
-                    Cursor.SetCursor(pointer, new Vector2(16, 16), CursorMode.Auto);
+                    Cursor.SetCursor(target, new Vector2(16, 16), CursorMode.Auto);
+                    break;
+                case "Enemy":
+                    Cursor.SetCursor(attack, new Vector2(16, 16), CursorMode.Auto);
                     break;
                 default:
                     break;
